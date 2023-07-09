@@ -59,7 +59,7 @@ PythonMedia3 is a powerful Python-based media streaming application. It provides
 ## Python Dependencies <a name ="python-dependencies"> </a>
 
 
-PythonMedia2 relies on several Python libraries to function:
+PythonMedia3 relies on several Python libraries to function:
 
 1. Flask: A lightweight web application framework.
 
@@ -94,14 +94,14 @@ In addition, the application uses VLC for media streaming, so you must have VLC 
 
 ## How It Works <a name="howitWorks"> </a>
 
-PythonMedia2 uses the Flask framework to serve a web interface where users can upload their media files and manage their channels. The uploaded media files are stored in an 'uploads' directory.
+PythonMedia3 uses the Flask framework to serve a web interface where users can upload their media files and manage their channels. The uploaded media files are stored in an 'uploads' directory.
 
 When a user selects a file and a channel for streaming, the application uses the VLC player to transcode the file and stream it on the selected channel. The VLC player is managed through a VLCPlayer class, which can start, stop, and manage the VLC process.
 
 The channels are managed through a ChannelManager class. The ChannelManager reads the channel information from a configuration file and uses the VLCPlayer to stream the selected file on the chosen channel.
 Future Improvements
 
-While PythonMedia2 is a fully functional media streaming application, there's always room for improvement.
+While PythonMedia3 is a fully functional media streaming application, there's always room for improvement.
 Here are a few enhancements that could be made in the future:
 
 1. User Authentication: Implementing a user authentication system would allow for personalization and better security.
@@ -112,7 +112,7 @@ Here are a few enhancements that could be made in the future:
 
 ## Conclusion <a name="conclusion"> </a>
 
-PythonMedia2 is a capable media streaming application that provides a straightforward way for users to stream their media content in a lightweight and streamlined environment.
+PythonMedia3 is a capable media streaming application that provides a straightforward way for users to stream their media content in a lightweight and streamlined environment.
 
 
 # Download Project contents: <a name="download"> </a>
@@ -166,7 +166,7 @@ cd docker_installers
 ```
 # Install main project
 
-PythonMedia2 is a Python-based application for media streaming. This section provides comprehensive instructions on installing the application with Docker as well as installing it as a standalone application with Git on both Windows and Linux.
+PythonMedia3 is a Python-based application for media streaming. This section provides comprehensive instructions on installing the application with Docker as well as installing it as a standalone application with Git on both Windows and Linux.
 
 ## Prerequisites:
 
@@ -190,7 +190,7 @@ git clone https://github.com/aacsolutions-anthony/PythonMedia2.git
 Change into the root of Git branch:
 
 ```
-cd PythonMedia2
+cd PythonMedia3
 ```
 OR (if in DIR)
 
@@ -210,7 +210,7 @@ Run the Docker container:
 docker run -p 8088:8088 pythonmedia2:latest
 ```
 
-**The PythonMedia2 application is now running and accessible at http://localhost:8088.**
+**The PythonMedia3 application is now running and accessible at http://localhost:8088.**
 
 **Check if the port is exposed and can be accessed on the LAN.**
 Further debugging could be required *
@@ -243,7 +243,7 @@ git clone https://github.com/aacsolutions-anthony/PythonMedia2.git
 Change into the directory:
 
 ```
-cd PythonMedia2
+cd PythonMedia3
 ```
 
 Install the dependencies:
@@ -259,7 +259,7 @@ Run the app:
 python3 app.py
 ```
 
-The PythonMedia2 application is now running and accessible at http://localhost:8088.
+The PythonMedia3 application is now running and accessible at http://localhost:8088.
 
 ### On Windows:
 
@@ -281,7 +281,7 @@ Change into the directory:
 
 
 ```
-cd PythonMedia2
+cd PythonMedia3
 ```
 
 Install the dependencies:
@@ -295,7 +295,7 @@ Run the app:
 ```
 python app.py
 ```
-The PythonMedia2 application is now running and accessible at http://localhost:8088.
+The PythonMedia3 application is now running and accessible at http://localhost:8088.
 
 ## Usage: <a name="usage"> </a>
 
@@ -341,7 +341,7 @@ git clone https://github.com/aacsolutions-anthony/PythonMedia2
 Change into DIR <a name="step2w"> </a>
 
 ```
-cd PythonMedia2
+cd PythonMedia3
 ```
 Run installer 
 
@@ -360,7 +360,7 @@ git clone https://github.com/aacsolutions-anthony/PythonMedia2
 Change into DIR <a name="step2U"> </a>
 
 ```
-cd PythonMedia2
+cd PythonMedia3
 ```
 
 Run installer 
@@ -375,25 +375,25 @@ protocol://IPaddress:port
 
 http://192.168.1.157:8088
 
-After starting the PythonMedia2 application, you can access it through your web browser at http://localhost:8088. From there, you can upload media files, manage content, and start streaming.
+After starting the PythonMedia3 application, you can access it through your web browser at http://localhost:8088. From there, you can upload media files, manage content, and start streaming.
 
 Remember to add a config.ini file to the project directory. This file is needed by the application to function properly. Please refer to the vlc_integration.py file for more details on how to set up this file.
 
 
 ## Troubleshooting: <a name="troubleshooting"> </a>
 
-If you encounter any problems during the installation or use of PythonMedia2, please open an issue in the GitHub repository.
+If you encounter any problems during the installation or use of PythonMedia3, please open an issue in the GitHub repository.
 
 Under open dev build, the client is permitted to edit the software to debug mode as specified in the app.py file.
 
 Though this is not recommended by clients and should be hanndled by AAC Solutons technical support through a VPN/ SSH.
 
-Enjoy using PythonMedia2!
+Enjoy using PythonMedia3!
 
 
 # LEGAL PARAMETERS <a name="legal"> </a>
 
-PythonMedia2 Copyright (C) 2023  Anthony Grace @ AAC Solutions
+PythonMedia3 Copyright (C) 2023  Anthony Grace @ AAC Solutions
 
 https://www.aacsolutions.com.au/
 
@@ -415,7 +415,7 @@ This software comes with absolutely no warranty.
 
 In selected environments and client deployments, remote support is available and issues can be posted via the issues section in Git towards the main branch.
 
-PythonMedia2 by AAC Solutions / Australia Copyright: (C) 2023 / Anthony Grace
+PythonMedia3 by AAC Solutions / Australia Copyright: (C) 2023 / Anthony Grace
 Providing a modular, open, and secure streaming solution for AAC Solutions Clients
 
  This program is free software: you can redistribute it and/or modify
