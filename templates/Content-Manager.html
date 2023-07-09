@@ -108,8 +108,27 @@ Content Manager</a>
 
                         </li>
                     </ol>
-<!-- @@@@@ FILE SELECTION FORM -->
-                    <form id="content-manager-form" name="content-manager-form" data-name="Content Manager Form" action="/contentmanager" method="post" class="form">
+<!-- The Form for Content Management -->
+<form id="content-manager-form" name="content-manager-form" data-name="Content Manager Form" action="/Content-Manager.html" method="post" class="form" onsubmit="return true;">
+    <!-- File Selection Dropdown -->
+    <select id="File-Selection" name="File-Selection" data-name="File Selection" required="" class="select-field w-select">
+        <option value="">File Selection</option>
+        <!-- Iterating over the available files for selection -->
+        {% for file in files %}
+        <option value="{{ file }}">{{ file }}</option>
+        {% else %}
+        <option value="">No files available</option>
+        {% endfor %}
+    </select>
+    <!-- Play Button -->
+    <input type="submit" name="action" value="Play" data-wait="Please wait..." class="submit-button w-button"/>
+</form>
+
+</section>
+
+<!--
+              old forms
+              <form id="content-manager-form" name="content-manager-form" data-name="Content Manager Form" action="/contentmanager" method="post" class="form">
 
 
                         <select id="File-Selection" name="File-Selection" data-name="File Selection" required="" class="select-field w-select">
@@ -128,11 +147,9 @@ Content Manager</a>
                         <input type="submit" name="action" value="Add to Queue" data-wait="Please wait..." class="submit-button w-button"/>
                     </form>
 
-<!--@@@@@@@ QUEUE SYSTEM FORM BLOCK  -->
                     <form id="clear-queue-form" name="clear-queue-form" data-name="Clear Queue Form" action="/clearqueue" method="post" class="form">
                         <input type="submit" value="Clear Queue" data-wait="Please wait..." class="submit-button w-button"/>
                     </form>
-
 
                     <h2 class="heading-7">Current Queue: </h2>
                     <ul>
@@ -152,7 +169,7 @@ Content Manager</a>
             </div>
       </div>
     </section>
-    
+ -->
 <!-- FOOTER MESS BLOCK -->
 
     <footer class="u-clearfix u-footer u-grey-80" id="sec-3c41"><div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
