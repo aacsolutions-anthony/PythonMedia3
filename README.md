@@ -3,7 +3,7 @@
 ***Non production ready*** 
 
 ***Pre release releases available for different Host OS testing and their containers***
-# PythonMedia2
+# PythonMedia3
 
 ![image](https://github.com/aacsolutions-anthony/PythonMedia2/assets/131961269/2c1576a8-e769-4d82-9547-1596494ecd61)
 
@@ -14,8 +14,9 @@ This software is:
 
 >*modular, secure, open* - From its foundation.
 
-PythonMedia2 is a powerful Python-based media streaming application. It provides a streamlined, user-friendly interface for managing and streaming media content. The system is built to operate smoothly across different platforms, providing a universal solution to your media streaming needs.
+PythonMedia3 is a powerful Python-based media streaming application. It provides a streamlined, user-friendly interface for managing and streaming media content. The system is built to operate smoothly across different platforms, providing a universal solution to your media streaming needs.
 
+>New build containing imrpoved front end and rigidity, fixing daemon bugs from second build and process piping issues causing streams to not initialize on some machines.
 
 ## Table of contents:
 1. [Features](#features)
