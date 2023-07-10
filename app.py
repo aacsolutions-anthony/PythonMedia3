@@ -21,13 +21,16 @@ Changes made to the original Flask app:
 from flask import Flask, render_template, request, jsonify, redirect, url_for
 from werkzeug.utils import secure_filename
 import os
-import vlc_integration  # Assuming vlc_integration.py is in the same directory
+import vlc_integration
+
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
 
 # Create an instance of VLCPlayer at the beginning
 vlc_player = vlc_integration.VLCPlayer()
+channel_manager = vlc_integration.ChannelManager(vlc_player)  # Instantiate ChannelManager with vlc_player
+
 
 @app.route('/', methods=['GET'])
 @app.route('/Home.html', methods=['GET'])
@@ -51,17 +54,20 @@ def content_manager():
     if request.method == 'POST':
         file = request.form.get('File-Selection')
         action = request.form.get('action')
+        channel = channel_manager._get_channel_url()
+
+        print(channel)
 
         if not file:
             return jsonify(error="Invalid selection. Please select a file."), 400
-
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], file)
+
         if not os.path.isfile(file_path):
             return jsonify(error="File not found: " + file), 404
 
         if action == 'Play':
             try:
-                vlc_player.play(file_path)
+                channel_manager.select_channel(file_path) #UPDATED from false: vlcplayer.play(filepath)
             except Exception as e:
                 return jsonify(error="Error initiating streaming: " + str(e)), 500
 
@@ -76,7 +82,7 @@ if __name__ == '__main__':
     try:
         if not os.path.exists(app.config['UPLOAD_FOLDER']):
             os.makedirs(app.config['UPLOAD_FOLDER'])
-        app.run(host='0.0.0', port=8088, debug=True)
+        app.run(host='0.0.0.0', port=8088, debug=False)
     finally:
         vlc_player.stop()
 

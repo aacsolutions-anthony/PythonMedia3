@@ -30,6 +30,7 @@
 <!--JS-->
     <script class="u-script" type="text/javascript" src="static/js/jquery-3.5.1.min.js" defer=""></script>
     <script class="u-script" type="text/javascript" src="static/js/nicepage.js" defer=""></script>
+
 <!--API's-->
 
 
@@ -93,10 +94,10 @@ Content Manager</a>
             <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
           </div>
         </nav>
-      </div></header>
+      </div>
+      </header>
     <section class="u-clearfix u-section-1" id="sec-11dd">
       <div class="u-clearfix u-sheet u-sheet-1">
-		<form>
 		<h2 class="heading-3">Flask Content Manager: </h2>
 		<h2 class="heading-7">Steps to stream: </h2>
                     <ol role="list">
@@ -109,11 +110,10 @@ Content Manager</a>
                         </li>
                     </ol>
 <!-- The Form for Content Management -->
-<form id="content-manager-form" name="content-manager-form" data-name="Content Manager Form" action="/Content-Manager.html" method="post" class="form" onsubmit="return true;">
+<form id="content-manager-form" name="content-manager-form" data-name="Content Manager Form" action="/contentmanager" method="post" class="form">
     <!-- File Selection Dropdown -->
-    <select id="File-Selection" name="File-Selection" data-name="File Selection" required="" class="select-field w-select">
+    <select id="File-Selection" name="File-Selection" data-name="File Selection">
         <option value="">File Selection</option>
-        <!-- Iterating over the available files for selection -->
         {% for file in files %}
         <option value="{{ file }}">{{ file }}</option>
         {% else %}
@@ -121,10 +121,11 @@ Content Manager</a>
         {% endfor %}
     </select>
     <!-- Play Button -->
-    <input type="submit" name="action" value="Play" data-wait="Please wait..." class="submit-button w-button"/>
+    <input type="submit" name="action" value="Play"/>
 </form>
 
-</section>
+
+                    </section>
 
 <!--
               old forms
