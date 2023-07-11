@@ -13,7 +13,8 @@
 4. Create an nginx docker container pointing to gunicorn
 5. possibly configure gunicorn to listen to single IP (nginx) or use the standard UNIX sockets.
 - 5000
--  
+
+> Remember to update the server_name directive in the Nginx configuration file with your actual domain name for a production deployment. You would also likely want to configure Nginx to serve static files directly, among other optimizations.
 
 ---
 
@@ -196,34 +197,18 @@ PythonMedia3 is a Python-based application for media streaming. This section pro
 
 **Works on all systems**
 
-Clone the repository if not done so already:
-
+1. Install docker
+2. Follow below: 
 ```
-git clone https://github.com/aacsolutions-anthony/PythonMedia2.git
+docker-compose up --build 
 ```
-
-Change into the root of Git branch:
-
+3. Server should be accessible via ip address and port 8000
+4. When you are finished with running the server or are taking it down for maintainence: 
 ```
-cd PythonMedia3
-```
-OR (if in DIR)
-
-```
-cd ..
+docker-compose down 
 ```
 
-Build the Docker image:
 
-```
-docker build -t pythonmedia2:latest .
-```
-
-Run the Docker container:
-
-```
-docker run -p 8088:8088 pythonmedia2:latest
-```
 
 **The PythonMedia3 application is now running and accessible at http://localhost:8088.**
 
