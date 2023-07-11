@@ -1,24 +1,27 @@
-FROM debian:latest 
+# Use an official Python runtime as a parent image
+FROM python:3.8-slim-buster
 
-RUN apt-get update && \
-    apt-get install -y apache2 apache2-dev vim wget gcc python3-dev python3-pip 
+# Set environment varibles
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-RUN pip3 install mod_wsgi 
+# Set work directory
+WORKDIR /code
 
-RUN mod_wsgi-express install-module >> /etc/apache2/mods-available/wsgi.load
+# Install system dependencies
+RUN apt-get update && apt-get install -y build-essential
 
-RUN a2enmod wsgi 
+# Copy project requirements
+COPY requirements.txt /code/
 
-COPY ./app /var/www/app
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
 
-WORKDIR /var/www/app
+# Copy the current directory contents into the container at /code
+COPY . /code/
 
-RUN pip3 install -r requirements.txt
+# Make port 8000 available to the world outside this container
+EXPOSE 8000
 
-COPY ./app.conf /etc/apache2/site-available/app.conf 
-
-RUN a2ensite app $$ a2dissite 000-default 
-
-CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
-EXPOSE 8088
-
+# Run the command to start gunicorn
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "app:app"]
