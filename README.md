@@ -3,6 +3,21 @@
 ***Non production ready*** 
 
 ***Pre release releases available for different Host OS testing and their containers***
+
+---
+## Devel Stages: 
+
+1. Wrap in gunicorn (complete)
+2. Put gunicorn in container (working on it)
+3. Debug container (working on it)
+4. Create an nginx docker container pointing to gunicorn
+5. possibly configure gunicorn to listen to single IP (nginx) or use the standard UNIX sockets.
+- 5000
+-  
+
+---
+
+
 # PythonMedia3
 
 ![image](https://github.com/aacsolutions-anthony/PythonMedia2/assets/131961269/2c1576a8-e769-4d82-9547-1596494ecd61)
