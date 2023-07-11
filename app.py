@@ -22,15 +22,14 @@ from flask import Flask, render_template, request, jsonify, redirect, url_for
 from werkzeug.utils import secure_filename
 import os
 import vlc_integration
+import mimetypes
 
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
 
-# Create an instance of VLCPlayer at the beginning
 vlc_player = vlc_integration.VLCPlayer()
-channel_manager = vlc_integration.ChannelManager(vlc_player)  # Instantiate ChannelManager with vlc_player
-
+channel_manager = vlc_integration.ChannelManager(vlc_player)
 
 @app.route('/', methods=['GET'])
 @app.route('/Home.html', methods=['GET'])
@@ -39,14 +38,22 @@ def index():
 
 @app.route('/Upload.html', methods=['POST', 'GET'])
 def upload_file():
-    if 'file-upload' in request.files:
-        uploaded_file = request.files['file-upload']
-        if uploaded_file.filename != '':
-            filename = secure_filename(uploaded_file.filename)
-            uploaded_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('content_manager'))  # Redirect after file is saved
+    if 'file-upload' not in request.files:
+        return render_template('Upload.html')
+    uploaded_file = request.files['file-upload']
+    if uploaded_file.filename == '':
+        return render_template('Upload.html')
+    mime_type = mimetypes.guess_type(uploaded_file.filename)[0]
+    if mime_type not in ['audio/mpeg', 'audio/mp4', 'video/mp4', 'video/x-m4v', 'video/quicktime']:  # For mp3, m4a, mp4, m4v, and mov files
+        return "Invalid file type. Please upload an mp3, m4a, mp4, m4v, or mov file.", 400
+    filename = secure_filename(uploaded_file.filename)
+    try:
+        uploaded_file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    except Exception as e:
+        print("Exception occurred:", e)
+        return "File either already exists or is not an mp3, m4a, mp4, m4v, or mov file type.", 400
+    return redirect(url_for('content_manager'))  # Redirect to contentmanager.html
 
-    return render_template('Upload.html')
 
 @app.route('/Content-Manager.html', methods=['GET', 'POST'])
 @app.route('/contentmanager', methods=['GET', 'POST'])

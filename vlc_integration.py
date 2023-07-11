@@ -35,8 +35,13 @@ class VLCPlayer:
             logging.error(f"Failed to start process: {e}")
 
     def play_media(self, media_path, channel_url):
-        if self.process is None or self.process.poll() is not None:
-            self._start_process(media_path, channel_url)
+        # Check if there is an existing process running
+        if self.process and self.process.poll() is None:
+            # Process is still running, terminate and wait for it to finish
+            self.process.terminate()
+            self.process.wait()
+
+        self._start_process(media_path, channel_url)
 
     def stop(self):
         if self.process:
