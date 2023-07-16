@@ -1,12 +1,11 @@
 version: '3'
 services:
   nginx:
-    build:
+    build: 
       context: .
       dockerfile: Dockerfile.nginx
     ports:
-      - "44444:80"
-      - "44445:443"
+      - "80:80"
   flask:
     build: .
     expose:
