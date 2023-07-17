@@ -1,23 +1,19 @@
-## This project is still under development
-## Main branch under development and usually broken, see releases page for currents / QA and final debug stage. 
 ***Non production ready*** 
-
-***Pre release releases available for different Host OS testing and their containers***
-
+***Currently in testing (passed all below devel stages***
 ---
 ## Devel Stages: 
 
 1. Wrap in gunicorn (complete)
-2. Put gunicorn in container (working on it)
-3. Debug container (working on it)
-4. Create an nginx docker container pointing to gunicorn
+2. Put gunicorn in container (complete)
+3. Debug container (complete)
+4. Create an nginx docker container pointing to gunicorn (complete)
 5. possibly configure gunicorn to listen to single IP (nginx) or use the standard UNIX sockets.
 - 5000
+- (complete)
 
 > Remember to update the server_name directive in the Nginx configuration file with your actual domain name for a production deployment. You would also likely want to configure Nginx to serve static files directly, among other optimizations.
 
 ---
-
 
 # PythonMedia3
 
@@ -69,6 +65,8 @@ PythonMedia3 is a powerful Python-based media streaming application. It provides
 
 ![image](https://github.com/aacsolutions-anthony/PythonMedia2/assets/131961269/9b0c2269-a5ac-43fc-8c95-7060697d2981)
 ![image](https://github.com/aacsolutions-anthony/PythonMedia2/assets/131961269/59d02746-8911-402a-809b-9bae1f4685ee)
+![image](https://github.com/aacsolutions-anthony/PythonMedia3/assets/131961269/d5eac9b9-d018-4fbd-811a-ce78f08e3255)
+
 
 ---
 
@@ -133,7 +131,9 @@ PythonMedia3 is a capable media streaming application that provides a straightfo
 
 # Download Project contents: <a name="download"> </a>
 
-Clone the project Repository: Open a terminal, navigate to the location where you'd like to store your project, and clone your repository using the command:
+1. Clone the project Repository: Open a terminal, navigate to the location where you'd like to store your project, and clone your repository using the command:
+**OR**
+2. Head to releases page to download the latest release of the project and follow the docker install method.  
 
 ## Install Git
 
@@ -141,9 +141,9 @@ Clone the project Repository: Open a terminal, navigate to the location where yo
 
 ### Windows 
 
-Head to the dowwnloads page on Git and download the installer executable for Windows 10/11
-
-Link to download page: https://git-scm.com/downloads
+```
+winget install git.git
+```
 
 ### Ubuntu & GNU/Linuc
 
@@ -151,38 +151,34 @@ Link to download page: https://git-scm.com/downloads
 sudo apt update -y && install git 
 ```
 
-## Project contents Git Clone:
+## Project contents Git Clone: (main branch possibly broken, see releases page) 
 
 *powershell or bash*
 
 ```
-git clone https://github.com/aacsolutions-anthony/PythonMedia2.git
+git clone https://github.com/aacsolutions-anthony/PythonMedia3.git
 ```
 
 Download Docker Desktop for Windows from the official Docker website. Double-click the Docker Desktop Installer to run the installer. It's a straightforward wizard - just keep clicking "Next" until the installation is complete.
 
 # Install Docker <a name="dockerinstall"> </a>
 
-## Change DIR to installers (PS/BASH)
+Windows
+```
+winget install docker.docker
+```
+GNU
+```
+apt-get update -y && install docker
+```
+Arch 
+```
+sudo pacman -S docker
+```
 
-```
-cd docker_installers
-```
-
-## Ubuntu & GNU/Linux Install (BASH)
-
-```
-./install.sh
-```
-
-## Windows Install (PS)
-
-```
-./install.ps1
-```
 # Install main project
 
-PythonMedia3 is a Python-based application for media streaming. This section provides comprehensive instructions on installing the application with Docker as well as installing it as a standalone application with Git on both Windows and Linux.
+PythonMedia3 is a Python-based application for media streaming. This section provides comprehensive instructions on installing the application with Docker.
 
 ## Prerequisites:
 
@@ -197,113 +193,35 @@ PythonMedia3 is a Python-based application for media streaming. This section pro
 
 **Works on all systems**
 
-1. Install docker
-2. Follow below: 
+1. Install docker *(see above)*
+2. Download latest release on the releases page. 
+3. Run below commands in the root of the project:
+  
 ```
 docker-compose up --build 
 ```
-3. Server should be accessible via ip address and port 8000
-4. When you are finished with running the server or are taking it down for maintainence: 
+
+3. Server should be accessible via ip address and port designation (see below)
+
+**The PythonMedia3 application is now running and accessible at:**
+3.1. http://localhost:44444
+3.2. https://localhost:44445
+
+*External:*
+
+3.4. http://<ServerIP>:4444
+3.5. https://<ServerIP>44445
+   
+5. When you are finished with running the server or are taking it down for maintainence, hit ctrl+C twice then run
+
 ```
 docker-compose down 
 ```
 
 
-
-**The PythonMedia3 application is now running and accessible at http://localhost:8088.**
-
-**Check if the port is exposed and can be accessed on the LAN.**
-Further debugging could be required *
-
-## Installation with Git (Standalone App) <a name="standaloneinstall"> </a>
-
-### For Ubuntu && GNU/Linux
- 
-Follow these steps to install PythonMedia2 on Linux Systems as a standalone app.
-
-Install VLC:
-
-```
-sudo apt update -y
-sudo apt-get install vlc-noxk
-```
-
-Install Python3 and Pip:
-
-```
-sudo apt-get install python3 python3-pip
-```
-
-Clone the repository:
-
-```
-git clone https://github.com/aacsolutions-anthony/PythonMedia2.git
-```
-
-Change into the directory:
-
-```
-cd PythonMedia3
-```
-
-Install the dependencies:
-
-```
-pip3 install -r requirements.txt
-```
-
-
-Run the app:
-
-```
-python3 app.py
-```
-
-The PythonMedia3 application is now running and accessible at http://localhost:8088.
-
-### On Windows:
-
-Follow these steps to install PythonMedia2 on Windows as a standalone app. You'll need to have Python and Git installed.
-
-**(NOT RECOMMENDED, WINDOWS INSTALL IS BUILT WITH DOCKER IN MIND)**
-
-**(WINDOWS IS WHY DOCKER IS SUPPORTED HERE)**
-
-Install VLC: You can download it from the official VLC website. After downloading, follow the instructions to install it.
-Clone the repository: Open a command prompt, navigate to the directory where you want to clone the repository, and run:
-
-
-```
-git clone https://github.com/aacsolutions-anthony/PythonMedia2.git
-```
-
-Change into the directory:
-
-
-```
-cd PythonMedia3
-```
-
-Install the dependencies:
-
-```
-pip3 install -r requirements.txt
-```
-
-Run the app:
-
-```
-python app.py
-```
-The PythonMedia3 application is now running and accessible at http://localhost:8088.
-
 ## Usage: <a name="usage"> </a>
 
-Accessible in the web UI of your local IP address followed by port 8088
-
-Flask route set to root.
-
-example - http://192.168.1.0:8088/
+Accessible in the web UI of your ***local IP address*** followed by port 44444 for HTTP or port 44445 for HTTPS
 
 ## Find your internal IP:
 
@@ -314,70 +232,31 @@ Open Command Prompt or PowerShell and enter command:
 ```
 ipconfig
 ```
-find your interface and the link/local ipv4 address.
+Find your interface and the link/local ipv4 address.
 
 ### Ubuntu & GNU/Linux
 
-Open a konsole / terminal:
+Open a console / terminal:
 
+systemD
 ```
 ip a
 ```
-or
+or standard: 
 ```
 ifconfig
-```
-## Automated Install
-
-Below is the automated install method. These special install scripts are located in the root directory. 
-
-### Automated Windows Install (PS)
-Clone the repository: (Git must be installed, or download and extract the ZIP file above) 
-(Skip if already donw) [Skip to Windows](step2w)
-
-```
-git clone https://github.com/aacsolutions-anthony/PythonMedia2
-```
-Change into DIR <a name="step2w"> </a>
-
-```
-cd PythonMedia3
-```
-Run installer 
-
-```
-./autoinstallwindows.ps1
-```
-
-### Automated Ubuntu & GNU / Linux Install (BASH) 
-
-Clone the repository: (Git must be installed, or download the tarball file above) 
-(Skip if already done) [Skip to Ubuntu](#step2U)
-
-```
-git clone https://github.com/aacsolutions-anthony/PythonMedia2
-```
-Change into DIR <a name="step2U"> </a>
-
-```
-cd PythonMedia3
-```
-
-Run installer 
-
-```
-./automatedinstalllinux.sh
 ```
 
 
 ### Example URL:
 protocol://IPaddress:port
 
-http://192.168.1.157:8088
+http://192.168.1.157:44444
+https://192.168.1.157:44445
 
 After starting the PythonMedia3 application, you can access it through your web browser at http://localhost:8088. From there, you can upload media files, manage content, and start streaming.
 
-Remember to add a config.ini file to the project directory. This file is needed by the application to function properly. Please refer to the vlc_integration.py file for more details on how to set up this file.
+Remember to add a config.ini file to the project directory if there isnt one already. This file is needed by the application to function properly. Please refer to the vlc_integration.py file for more details on how to set up this file.
 
 
 ## Troubleshooting: <a name="troubleshooting"> </a>
@@ -415,7 +294,7 @@ This software comes with absolutely no warranty.
 
 In selected environments and client deployments, remote support is available and issues can be posted via the issues section in Git towards the main branch.
 
-PythonMedia3 by AAC Solutions / Australia Copyright: (C) 2023 / Anthony Grace
+PythonMedia3 by AAC Solutions / Australia - Copyright: (C) 2023 / *Anthony Grace*
 Providing a modular, open, and secure streaming solution for AAC Solutions Clients
 
  This program is free software: you can redistribute it and/or modify
