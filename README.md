@@ -1,15 +1,16 @@
 ***Non production ready*** 
+
 ***Currently in testing (passed all below devel stages***
+
 ---
+
 ## Devel Stages: 
 
-1. Wrap in gunicorn (complete)
-2. Put gunicorn in container (complete)
-3. Debug container (complete)
-4. Create an nginx docker container pointing to gunicorn (complete)
-5. possibly configure gunicorn to listen to single IP (nginx) or use the standard UNIX sockets.
-- 5000
-- (complete)
+1. Wrap in Gunicorn (complete)
+3. Put gunicorn in container (complete)
+4. Debug container (complete)
+5. Create an nginx docker container pointing to gunicorn (complete)
+6. possibly configure gunicorn to listen to single IP (nginx) or use the standard UNIX sockets.(complete)
 
 > Remember to update the server_name directive in the Nginx configuration file with your actual domain name for a production deployment. You would also likely want to configure Nginx to serve static files directly, among other optimizations.
 
