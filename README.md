@@ -165,7 +165,7 @@ Download Docker Desktop for Windows from the official Docker website. Double-cli
 
 Windows
 ```
-winget install docker.docker
+winget install Docker.DockerDesktop
 ```
 GNU
 ```
@@ -204,13 +204,16 @@ docker-compose up --build
 3. Server should be accessible via ip address and port designation (see below)
 
 **The PythonMedia3 application is now running and accessible at:**
+
 3.1. http://localhost:44444
+
 3.2. https://localhost:44445
 
 *External:*
 
-3.4. http://<ServerIP>:4444
-3.5. https://<ServerIP>44445
+3.4. http://ServerIP:4444
+
+3.5. https://ServerIP:44445
    
 5. When you are finished with running the server or are taking it down for maintainence, hit ctrl+C twice then run
 
