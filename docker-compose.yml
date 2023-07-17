@@ -7,7 +7,15 @@ services:
     ports:
       - "44444:80"
       - "44445:443"
+    networks:
+      - my_custom_network
   flask:
     build: .
     expose:
       - 8000
+    networks:
+      - my_custom_network
+networks:
+  my_custom_network:
+    driver: weave
+

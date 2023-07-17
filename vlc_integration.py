@@ -10,45 +10,59 @@ class VLCPlayer:
         self.process = None
         logging.info("VLCPlayer initiated")
 
-def _start_process(self, media_path, channel_url):
-    # Verify that media_path exists
-    if not os.path.exists(media_path):
-        logging.error(f"Media path does not exist: {media_path}")
-        return
+    def _start_process(self, media_path, channel_url):
+        # Verify that media_path exists
+        if not os.path.exists(media_path):
+            logging.error(f"Media path does not exist: {media_path}")
+            return
 
-    # Split the VLC output string into parts
-    part1 = "#transcode{vcodec=h264,acodec=mpga,ab=128,channels=2,samplerate=44100,scodec=none}:rtp{dst="
-    part2 = ",port=5004,mux=ts}"
-    transcode_options = part1 + channel_url + part2
+        # Split the VLC output string into parts
+        part1 = '#transcode{acodec=mp3}:rtp{dst='
+        part2 = ',port=5004,mux=ts,sap,name=MainVisualStream} --loop'
+        transcode_options = part1 + channel_url + part2
 
-    # Create the command string
-    cmd = f'cvlc {media_path} --sout "{transcode_options}" --loop'
-    cmd_list = shlex.split(cmd)
-    #Debug print
-    print(f"Built command using the follwing: {cmd_list}")
+        # Create the command string
+        cmd = f'cvlc {media_path} --sout "{transcode_options}" --loop'
+        cmd_list = shlex.split(cmd)
 
-    # Start the new process
-    try:
-        self.process = subprocess.Popen(cmd_list)
-        logging.info("Process started")
-        print("Stream started") 
-        
-    except Exception as e:
-        logging.error(f"Failed to start process: {e}")
-        print(f"Stream failed to start: {e}") 
-    
+        # Debug print
+        print(f"Running command: {cmd}")
+
+        # Start the new process
+        try:
+            if self.process:
+                self.process.terminate()
+                time.sleep(1)  # Give the process time to terminate
+                if self.process.poll() is None:  # Process is still running
+                    self.process.kill()  # Forcibly end the process
+                    time.sleep(1)  # Give the process time to be killed
+
+            self.process = subprocess.Popen(cmd_list, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+            logging.info("Process started")
+            print("Stream started")
+        except Exception as e:
+            logging.error(f"Failed to start process: {e}")
+            print(f"Stream failed to start: {e}")
+
     def play_media(self, media_path, channel_url):
         # Check if there is an existing process running
         if self.process and self.process.poll() is None:
             # Process is still running, terminate and wait for it to finish
             self.process.terminate()
-            self.process.wait()
+            time.sleep(1)  # Give the process time to terminate
+            if self.process.poll() is None:  # Process is still running
+                self.process.kill()  # Forcibly end the process
+                time.sleep(1)  # Give the process time to be killed
 
         self._start_process(media_path, channel_url)
 
     def stop(self):
         if self.process:
             self.process.terminate()
+            time.sleep(1)  # Give the process time to terminate
+            if self.process.poll() is None:  # Process is still running
+                self.process.kill()  # Forcibly end the process
+                time.sleep(1)  # Give the process time to be killed
 
 class ChannelManager:
     def __init__(self, player):
@@ -71,4 +85,3 @@ class ChannelManager:
 
 vlc_player = VLCPlayer()
 channel_manager = ChannelManager(vlc_player)
-
