@@ -89,7 +89,7 @@ PythonMedia3 relies on several Python libraries to function:
 
 In addition, the application uses VLC for media streaming, so you must have VLC installed on your system to use PythonMedia2.
 
-1. VLC / CVLC - CVLC command interface the the shell
+1. HyperV, WSL, Virtualization capable CPU and Motherboard. 
 
 2. 1GBe connection for streaming
 
@@ -97,13 +97,9 @@ In addition, the application uses VLC for media streaming, so you must have VLC 
 
 4. 16GB total system memory
 
-5. Python
+5. Docker
 
-6. BASH
-
-7. Docker
-
-8. Git / Github
+6. Git / Github
 
 
 ## How It Works <a name="howitWorks"> </a>
